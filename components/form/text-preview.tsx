@@ -1,6 +1,7 @@
 "use client";
 
 import { usePrompt } from "@/context/prompt-context";
+import { SECTIONS } from "@/lib/section-data";
 import { Copy } from "lucide-react";
 import React from "react";
 
@@ -8,18 +9,16 @@ export function TextPreview() {
     const { state } = usePrompt();
     const [copied, setCopied] = React.useState(false);
 
-    const promptText = React.useMemo(() => {
-        const parts: string[] = [];
+    const { segments, fullText, prefix } = React.useMemo(() => {
+        const parts: { text: string; sectionId?: string }[] = [];
 
         // 1. Scene Description (This is usually the main subject/setting)
         const sceneDesc = state.sections.scene?.description?.[0];
         if (sceneDesc) {
-            parts.push(sceneDesc);
+            parts.push({ text: sceneDesc, sectionId: "scene" });
         }
 
         // 2. Iterate other sections
-        const excludedSections = ["scene"]; // Handled separately (description) or just regular iteration
-
         // Helper to format values
         const formatValues = (values: string[]) => values.join(", ");
 
@@ -62,29 +61,25 @@ export function TextPreview() {
             });
 
             if (sectionParts.length > 0) {
-                parts.push(sectionParts.join(", "));
+                parts.push({ text: sectionParts.join(", "), sectionId });
             }
         });
 
         // Prefix with media type
-        const prefix = state.mediaType === "photo" ? "A photograph of" : "A video of";
+        const prefixStr = state.mediaType === "photo" ? "A photograph of " : "A video of ";
 
-        // Check if we have a scene description to attach natural language to
-        let finalPrompt = "";
+        // Construct full text for copy
+        const finalText = `${prefixStr}${parts.map(p => p.text).join(", ")}`;
 
-        if (sceneDesc) {
-            finalPrompt = `${prefix} ${parts.join(", ")}`;
-        } else {
-            // If no main description, just list the attributes
-            finalPrompt = `${prefix} ${parts.join(", ")}`;
-        }
-
-        // Clean up double commas or empty spaces just in case
-        return finalPrompt.replace(/, ,/g, ",").trim();
+        return {
+            segments: parts,
+            prefix: prefixStr,
+            fullText: finalText.replace(/, ,/g, ",").trim()
+        };
     }, [state]);
 
     const handleCopy = () => {
-        navigator.clipboard.writeText(promptText);
+        navigator.clipboard.writeText(fullText);
         setCopied(true);
         setTimeout(() => setCopied(false), 2000);
     };
@@ -102,7 +97,23 @@ export function TextPreview() {
             </div>
             <div className="flex-1 rounded-sm border-4 border-black dark:border-white bg-card p-4 overflow-auto shadow-brutal font-mono text-lg leading-relaxed">
                 <p className="whitespace-pre-wrap text-foreground">
-                    {promptText}
+                    {prefix}
+                    {segments.map((seg, i) => {
+                        const sectionConfig = SECTIONS.find(s => s.id === seg.sectionId);
+                        const colorVar = sectionConfig ? sectionConfig.color : 'section-scene';
+
+                        return (
+                            <React.Fragment key={i}>
+                                <span
+                                    style={{ backgroundColor: `hsl(var(--${colorVar}) / 0.15)` }}
+                                    className="rounded px-1 -mx-1"
+                                >
+                                    {seg.text}
+                                </span>
+                                {i < segments.length - 1 && ", "}
+                            </React.Fragment>
+                        );
+                    })}
                 </p>
             </div>
         </div>

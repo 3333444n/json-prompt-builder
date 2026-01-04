@@ -43,9 +43,9 @@ export function PromptBuilder() {
                                             <div
                                                 className="w-full mb-6"
                                                 style={{
-                                                    "--current-section": `var(--section-${section.id})`,
-                                                    "--current-section-foreground": `var(--section-${section.id}-foreground)`,
-                                                    "--current-section-muted": `var(--section-${section.id}-muted)`,
+                                                    "--current-section": `var(--${section.color})`,
+                                                    "--current-section-foreground": `var(--${section.color}-foreground)`,
+                                                    "--current-section-muted": `var(--${section.color}-muted)`,
                                                 } as React.CSSProperties}
                                             >
                                                 <label className="block text-sm font-mono uppercase tracking-wider mb-2 font-bold opacity-70">

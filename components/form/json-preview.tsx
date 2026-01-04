@@ -50,7 +50,44 @@ export function JSONPreview() {
             </div>
             <div className="flex-1 rounded-sm border-4 border-black dark:border-white bg-card p-4 overflow-auto shadow-brutal font-mono text-sm">
                 <pre className="whitespace-pre-wrap break-all text-foreground">
-                    {JSON.stringify(cleanState, null, 2)}
+                    {/* Custom JSON Rendering with Highlights */}
+                    <div className="font-mono text-sm leading-relaxed">
+                        <span>{"{"}</span>
+                        <div className="pl-4">
+                            <span className="opacity-50">"media_type"</span>: <span className="text-green-600 dark:text-green-400">"{cleanState.media_type}"</span>,
+                        </div>
+                        <div className="pl-4">
+                            <span className="opacity-50">"prompt"</span>: <span>{"{"}</span>
+                            <div className="pl-4 flex flex-col gap-1 my-1">
+                                {Object.entries(cleanState.prompt).map(([key, value], index, arr) => {
+                                    // eslint-disable-next-line @typescript-eslint/no-var-requires
+                                    const { SECTIONS } = require("@/lib/section-data");
+                                    const sectionConfig = SECTIONS.find((s: any) => s.id === key);
+                                    const colorVar = sectionConfig ? sectionConfig.color : 'section-scene';
+
+                                    return (
+                                        <div
+                                            key={key}
+                                            style={{ backgroundColor: `hsl(var(--${colorVar}) / 0.15)` }}
+                                            className="rounded px-2 py-0.5 -mx-2 w-fit"
+                                        >
+                                            <span className="opacity-70">"{key}"</span>: {JSON.stringify(value)}
+                                            {index < arr.length - 1 ? "," : ""}
+                                        </div>
+                                    );
+                                })}
+                            </div>
+                            <span>{"}"}</span>
+                        </div>
+                        <span>{"}"}</span>
+
+                        {/* Fallback for empty state or to show structure clearly if empty */}
+                        {Object.keys(cleanState.prompt).length === 0 && (
+                            <div className="text-muted-foreground italic mt-2">
+                                // Add details to see JSON structure
+                            </div>
+                        )}
+                    </div>
                 </pre>
             </div>
         </div>
