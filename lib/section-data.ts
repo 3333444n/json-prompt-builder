@@ -76,7 +76,7 @@ export const SECTIONS: SectionConfig[] = [
         color: "section-cinematography",
         visibleFor: ["photo", "video"],
         fields: [
-            { id: "shot_type", label: "Shot Type", options: ["Macro", "Telephoto", "Wide Angle", "Fisheye", "Drone", "GoPro", "CCTV", "Polaroid", "Vintage Film", "Isometric"] },
+            { id: "shot_type", label: "Shot Type", options: ["Macro", "Telephoto", "Wide Angle", "Fisheye", "Drone", "GoPro", "CCTV", "Polaroid", "Vintage Film", "Isometric", "Selfie"] },
             { id: "camera", label: "Camera Model", options: ["Sony A7RIV", "Canon R5", "Nikon Z9", "Leica M11", "Hasselblad", "Fujifilm GFX", "Arri Alexa", "Red Komodo", "iPhone", "Film Camera"] },
             { id: "film_stock", label: "Film Stock", options: ["Kodak Portra 400", "Kodak Gold 200", "Fujifilm Velvia", "Ilford HP5", "Cinestill 800T", "Ektachrome"] },
             { id: "lighting_style", label: "Lighting Style", options: ["Cinematic", "Studio", "Natural", "Volumetric", "Rembrandt", "Split", "Butterfly", "Loop", "Rim Light", "Silhouette", "Neon", "Cyberpunk"] },

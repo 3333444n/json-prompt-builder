@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { usePrompt } from "@/context/prompt-context";
 import { SECTIONS } from "@/lib/section-data";
 import { MediaTypeToggle } from "./form/media-type-toggle";
+import { PresetsPanel } from "./form/presets-panel";
 import { Section } from "./ui/section";
 import { MultiSelect } from "./ui/multi-select";
 import { JSONPreview } from "./form/json-preview";
@@ -32,6 +33,7 @@ export function PromptBuilder() {
                 </header>
 
                 <MediaTypeToggle />
+                <PresetsPanel />
 
                 <div className="space-y-8">
                     {SECTIONS.filter(section => section.visibleFor.includes(state.mediaType)).map((section) => (
