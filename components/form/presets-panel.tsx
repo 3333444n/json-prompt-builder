@@ -3,7 +3,7 @@
 import React from "react";
 import { usePrompt } from "@/context/prompt-context";
 import { cn } from "@/lib/utils";
-import { Clapperboard, Smartphone, Dices, Trash2 } from "lucide-react";
+import { Clapperboard, Smartphone, Dices, Trash2, Film, Camera } from "lucide-react";
 import { SECTIONS } from "@/lib/section-data";
 
 export function PresetsPanel() {
@@ -55,10 +55,44 @@ export function PresetsPanel() {
         updateField("cinematography", "film_stock", ["iPhone color"]);
         updateField("cinematography", "format", [".heic"]);
 
-        // Clothing (optional, matching existing preset style if needed, but screenshot didn't specify. 
-        // Keeping it cleared or default if not specified is safer, but 'Casual' fits the vibe. 
-        // User asked to INCLUDE options from screenshot. I'll stick to just those options.)
         updateField("clothing", "style", ["Casual"]);
+    };
+
+    const applyMovieStill = () => {
+        updateField("scene", "atmosphere", ["Blockbuster", "Cinematic"]);
+        updateField("scene", "references", ["Movie Still"]);
+
+        updateField("cinematography", "camera", ["Arri Alexa"]);
+        updateField("cinematography", "lenses", ["Anamorphic"]);
+        updateField("cinematography", "film_stock", ["Kodak Vision3 500T"]);
+        // Format options are specific, skipping invalid ones
+        updateField("cinematography", "photo_style", ["Cine Still", "Hyperrealistic"]);
+        updateField("cinematography", "lighting_style", ["Cinematic", "Volumetric"]);
+        updateField("cinematography", "effects", ["Grain", "Chromatic Aberration", "Motion Blur"]);
+
+        updateField("lighting", "color", ["Warm", "Teal"]); // Classic teal/orange if possible, or just mixed
+        updateField("lighting", "shadows", ["Contrasty", "Deep"]);
+        updateField("lighting", "contrast-ratio", ["5:1"]);
+    };
+
+    const applyFashion = () => {
+        updateField("scene", "atmosphere", ["Editorial", "Glamorous"]);
+        updateField("scene", "references", ["Vogue"]);
+
+        updateField("cinematography", "camera", ["Phase One XF"]);
+        updateField("cinematography", "lenses", ["85mm-telephoto"]);
+        updateField("cinematography", "photo_style", ["Editorial", "Portrait"]);
+        updateField("cinematography", "lighting_style", ["Studio", "High Key"]); // High Key is maybe not an option, check data. 'Studio' is.
+
+        updateField("lighting", "source", ["Strobe", "Beauty Dish"]);
+        updateField("lighting", "direction", ["Front", "Overhead"]); // Butterfly lighting usually overhead/front
+        updateField("lighting", "shadows", ["Soft", "Short"]);
+
+        updateField("clothing", "style", ["Haute Couture", "Luxury", "Avant-garde"]);
+
+        updateField("character", "skin", ["Porcelain", "Glowing"]);
+        updateField("pose", "type", ["Dynamic Angle", "Standing"]);
+        updateField("pose", "gaze", ["Looking at Camera"]);
     };
 
     const applyRandom = () => {
@@ -137,6 +171,32 @@ export function PresetsPanel() {
                     <div className="min-w-0">
                         <div className="font-bold font-mono uppercase text-sm truncate">UGC</div>
                         <div className="text-[10px] md:text-xs opacity-70 font-mono truncate">iPhone, Selfie...</div>
+                    </div>
+                </button>
+
+                <button
+                    onClick={applyMovieStill}
+                    className={buttonClass}
+                >
+                    <div className="p-2 bg-emerald-400 border-2 border-black rounded-full shrink-0">
+                        <Film className="w-4 h-4 text-black" />
+                    </div>
+                    <div className="min-w-0">
+                        <div className="font-bold font-mono uppercase text-sm truncate">Movie Still</div>
+                        <div className="text-[10px] md:text-xs opacity-70 font-mono truncate">Anamorphic, 500T...</div>
+                    </div>
+                </button>
+
+                <button
+                    onClick={applyFashion}
+                    className={buttonClass}
+                >
+                    <div className="p-2 bg-pink-400 border-2 border-black rounded-full shrink-0">
+                        <Camera className="w-4 h-4 text-black" />
+                    </div>
+                    <div className="min-w-0">
+                        <div className="font-bold font-mono uppercase text-sm truncate">Fashion</div>
+                        <div className="text-[10px] md:text-xs opacity-70 font-mono truncate">Editorial, Studio...</div>
                     </div>
                 </button>
             </div>

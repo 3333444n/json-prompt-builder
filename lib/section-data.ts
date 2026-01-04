@@ -9,7 +9,8 @@ export const SECTIONS: SectionConfig[] = [
         descriptionPrefix: "SCENE:",
         fields: [
             { id: "description", label: "Scene Description", options: [], type: "textarea" },
-            { id: "atmosphere", label: "Atmosphere", options: ["Eerie", "Joyful", "Tense", "Peaceful", "Chaotic", "Dreamy", "Nostalgic", "Melancholic", "Romantic", "Mysterious", "Candid", "RAW"] },
+            { id: "atmosphere", label: "Atmosphere", options: ["Eerie", "Joyful", "Tense", "Peaceful", "Chaotic", "Dreamy", "Nostalgic", "Melancholic", "Romantic", "Mysterious", "Candid", "RAW", "Editorial", "Glamorous", "Blockbuster"] },
+            { id: "references", label: "References", options: ["Minimalistic", "Wes Anderson Style", "Stop Motion", "UGC", "Movie Still", "Vogue", "Vanity Fair"] },
         ]
     },
     {
@@ -47,7 +48,7 @@ export const SECTIONS: SectionConfig[] = [
         visibleFor: ["photo", "video"],
         descriptionPrefix: "CLOTHING:",
         fields: [
-            { id: "style", label: "Style", options: ["Casual", "Formal", "Streetwear", "Cyberpunk", "Steampunk", "Fantasy", "Sci-fi", "Vintage", "Retro", "Minimalist", "Avant-garde", "Military", "Goth", "Punk"] },
+            { id: "style", label: "Style", options: ["Casual", "Formal", "Streetwear", "Cyberpunk", "Steampunk", "Fantasy", "Sci-fi", "Vintage", "Retro", "Minimalist", "Avant-garde", "Military", "Goth", "Punk", "Haute Couture", "Luxury"] },
             { id: "top", label: "Tops", options: ["T-shirt", "Shirt", "Blouse", "Hoodie", "Jacket", "Coat", "Tank Top", "Suit Jacket", "Robe", "Armor", "Sweater"] },
             { id: "bottom", label: "Bottoms", options: ["Jeans", "Trousers", "Shorts", "Skirt", "Dress", "Leggings", "Cargo Pants", "Sweatpants"] },
             { id: "footwear", label: "Footwear", options: ["Sneakers", "Boots", "Heels", "Sandals", "Barefoot", "Loafers", "Combat Boots"] },
@@ -93,10 +94,10 @@ export const SECTIONS: SectionConfig[] = [
         fields: [
             { id: "photo_style", label: "Photo Style", options: ["Urban", "Editorial", "Street", "Documentary", "Black and White", "Color", "Vintage", "Analog", "UGC", "Cine Still", "Landscape", "Portrait", "Hyperrealistic"] },
             { id: "camera_angle", label: "Camera Angle", options: ["Eye Level", "Low Angle", "High Angle", "Over the Shoulder", "Close-up", "Medium Shot", "Full Body", "Cowboy Shot", "Extreme Close-up", "Wide Shot", "Full Shot", "Medium Close-up", "American Shot", "Medium Long", "Selfie"] },
-            { id: "camera", label: "Camera Model", options: ["Sony A7RIV", "Canon R5", "Nikon Z9", "Leica M11", "Hasselblad", "Fujifilm GFX", "Arri Alexa", "Red Komodo", "iPhone", "Film Camera", "GoPro Hero"] },
+            { id: "camera", label: "Camera Model", options: ["Sony A7RIV", "Canon R5", "Nikon Z9", "Leica M11", "Hasselblad", "Fujifilm GFX", "Arri Alexa", "Red Komodo", "iPhone", "Film Camera", "GoPro Hero", "Phase One XF"] },
             { id: "lenses", label: "Lenses", options: ["8mm-fisheye", "12mm-wide angle", "24mm-normal", "35mm-medium", "50mm-telephoto", "85mm-telephoto", "105mm-telephoto", "200mm-telephoto", "Macro", "Anamorphic", "Prime", "Zoom", "Phone Lenses"] },
-            { id: "film_stock", label: "Film Stock", options: ["Kodak Portra 400", "Kodak Gold 200", "Fujifilm Velvia", "Ilford HP5", "Cinestill 800T", "Ektachrome", "iPhone color"] },
-            { id: "lighting_style", label: "Lighting Style", options: ["Cinematic", "Studio", "Natural", "Volumetric", "Rembrandt", "Split", "Butterfly", "Loop", "Rim Light", "Silhouette", "Neon", "Cyberpunk"] },
+            { id: "film_stock", label: "Film Stock", options: ["Kodak Portra 400", "Kodak Gold 200", "Fujifilm Velvia", "Ilford HP5", "Cinestill 800T", "Ektachrome", "iPhone color", "Kodak Vision3 500T", "Polaroid"] },
+            { id: "lighting_style", label: "Lighting Style", options: ["Cinematic", "Studio", "Natural", "Volumetric", "Rembrandt", "Split", "Butterfly", "Loop", "Rim Light", "Silhouette", "Neon", "Cyberpunk", "High Key", "Low Key"] },
             { id: "effects", label: "Effects", options: ["Bokeh", "Motion Blur", "Grain", "Vignette", "Chromatic Aberration", "Lens Flare", "Double Exposure", "Glitch", "Halation", "Distortion"] },
             { id: "format", label: "Format", options: [".heic", ".ARW", ".tif"] },
         ]
@@ -108,7 +109,7 @@ export const SECTIONS: SectionConfig[] = [
         visibleFor: ["photo", "video"],
         descriptionPrefix: "LIGHTING:",
         fields: [
-            { id: "source", label: "Light Source", options: ["Sun", "Moon", "Lamp", "Fire", "Neon Sign", "Candle", "Flash", "Softbox", "Ring Light", "Window", "Natural Light"] },
+            { id: "source", label: "Light Source", options: ["Sun", "Moon", "Lamp", "Fire", "Neon Sign", "Candle", "Flash", "Softbox", "Ring Light", "Window", "Natural Light", "Beauty Dish", "Strobe"] },
             { id: "color", label: "Light Color", options: ["Warm", "Cool", "Neutral", "Red", "Blue", "Green", "Purple", "Orange", "Multicolor"] },
             { id: "intensity", label: "Intensity", options: ["Bright", "Dim", "Soft", "Harsh", "Shadowy", "High Contrast", "Low Contrast"] },
             { id: "direction", label: "Direction", options: ["Front", "Back", "Side", "Overhead", "Underneath", "Ambient"] },
