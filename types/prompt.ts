@@ -10,7 +10,8 @@ export type SectionId =
     | "cameraMotion"
     | "action"
     | "sound"
-    | "speech";
+    | "speech"
+    | "references";
 
 export type MediaType = "photo" | "video";
 
@@ -32,7 +33,7 @@ export type FieldConfig = {
     label: string;
     options: string[];
     allowCustom?: boolean;
-    type?: "select" | "textarea";
+    type?: "select" | "textarea" | "dynamic_list";
 };
 
 export const INITIAL_STATE: PromptState = {
@@ -50,5 +51,6 @@ export const INITIAL_STATE: PromptState = {
         action: {},
         sound: {},
         speech: {},
+        references: {},
     },
 };

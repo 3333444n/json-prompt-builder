@@ -60,6 +60,68 @@ export function PromptBuilder() {
                                                     onChange={(e) => updateField(section.id, field.id, [e.target.value])}
                                                 />
                                             </div>
+                                        ) : field.type === 'dynamic_list' ? (
+                                            <div
+                                                className="w-full mb-6"
+                                                style={{
+                                                    "--current-section": `var(--${section.color})`,
+                                                    "--current-section-foreground": `var(--${section.color}-foreground)`,
+                                                    "--current-section-muted": `var(--${section.color}-muted)`,
+                                                } as React.CSSProperties}
+                                            >
+                                                <label className="block text-sm font-mono uppercase tracking-wider mb-4 font-bold opacity-70">
+                                                    {field.label}
+                                                </label>
+
+                                                <div className="space-y-4 mb-4">
+                                                    {(state.sections[section.id as keyof typeof state.sections]?.[field.id] || []).map((value, index) => (
+                                                        <div key={index} className="flex gap-3 items-start p-4 border-2 border-dashed border-border/50 bg-card/50">
+                                                            <div className="flex-none pt-2">
+                                                                <div className="w-8 h-8 rounded-full bg-[var(--current-section)] text-[var(--current-section-foreground)] flex items-center justify-center font-bold font-mono text-xs border-2 border-black dark:border-white">
+                                                                    {index + 1}
+                                                                </div>
+                                                            </div>
+                                                            <div className="flex-1 space-y-2">
+                                                                <div className="text-xs font-mono font-bold opacity-50 uppercase">
+                                                                    Image {index + 1}
+                                                                </div>
+                                                                <textarea
+                                                                    className="w-full p-2 bg-background border-2 border-border font-mono text-sm shadow-sm focus:outline-none focus:border-[var(--current-section)] transition-all min-h-[80px] resize-y placeholder:text-muted-foreground/50"
+                                                                    placeholder="Describe how this reference is used..."
+                                                                    value={value}
+                                                                    onChange={(e) => {
+                                                                        const currentValues = state.sections[section.id as keyof typeof state.sections]?.[field.id] || [];
+                                                                        const newValues = [...currentValues];
+                                                                        newValues[index] = e.target.value;
+                                                                        updateField(section.id, field.id, newValues);
+                                                                    }}
+                                                                />
+                                                            </div>
+                                                            <button
+                                                                onClick={() => {
+                                                                    const currentValues = state.sections[section.id as keyof typeof state.sections]?.[field.id] || [];
+                                                                    const newValues = currentValues.filter((_, i) => i !== index);
+                                                                    updateField(section.id, field.id, newValues);
+                                                                }}
+                                                                className="opacity-50 hover:opacity-100 p-1 hover:bg-destructive hover:text-destructive-foreground transition-colors"
+                                                            >
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg>
+                                                            </button>
+                                                        </div>
+                                                    ))}
+                                                </div>
+
+                                                <button
+                                                    onClick={() => {
+                                                        const currentValues = state.sections[section.id as keyof typeof state.sections]?.[field.id] || [];
+                                                        updateField(section.id, field.id, [...currentValues, ""]);
+                                                    }}
+                                                    className="w-full py-3 px-4 border-2 border-dashed border-border hover:border-[var(--current-section)] hover:bg-[var(--current-section-muted)] hover:text-[var(--current-section-foreground)] transition-all font-mono font-bold uppercase text-sm flex items-center justify-center gap-2"
+                                                >
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14" /><path d="M12 5v14" /></svg>
+                                                    Add Reference
+                                                </button>
+                                            </div>
                                         ) : (
                                             <MultiSelect
                                                 sectionId={section.id}

@@ -16,6 +16,15 @@ export const SECTIONS: SectionConfig[] = [
         ]
     },
     {
+        id: "references",
+        label: "References",
+        color: "section-references",
+        visibleFor: ["photo", "video"],
+        fields: [
+            { id: "images", label: "Image References", options: [], type: "dynamic_list" },
+        ]
+    },
+    {
         id: "character",
         label: "Character",
         color: "section-character",

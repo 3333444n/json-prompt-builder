@@ -36,7 +36,8 @@ export function TextPreview() {
             "palette",
             "cameraMotion",
             "sound",
-            "speech"
+            "speech",
+            "references"
         ];
 
         outputOrder.forEach(sectionId => {

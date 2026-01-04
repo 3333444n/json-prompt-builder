@@ -79,6 +79,11 @@
     --section-video: 30 100% 50%;
     --section-video-foreground: 30 100% 95%;
     --section-video-muted: 30 100% 90%;
+
+    /* References - Indigo */
+    --section-references: 240 100% 50%;
+    --section-references-foreground: 240 100% 95%;
+    --section-references-muted: 240 100% 90%;
   }
 
   .dark {
@@ -111,7 +116,7 @@
     --ring: 0 0% 83%;
 
     /* Dark mode adjustments ensuring contrast */
-     /* Scene - Lime */
+    /* Scene - Lime */
     --section-scene: 85 100% 35%;
     --section-scene-foreground: 85 100% 95%;
     --section-scene-muted: 85 50% 15%;
@@ -155,6 +160,11 @@
     --section-video: 30 100% 40%;
     --section-video-foreground: 30 100% 95%;
     --section-video-muted: 30 50% 15%;
+
+    /* References - Indigo */
+    --section-references: 240 100% 40%;
+    --section-references-foreground: 240 100% 95%;
+    --section-references-muted: 240 50% 15%;
   }
 }
 
