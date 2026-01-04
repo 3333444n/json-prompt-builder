@@ -129,6 +129,7 @@ export const SECTIONS: SectionConfig[] = [
             { id: "language", label: "Language", options: ["English", "Spanish", "French", "German", "Japanese", "Chinese", "Russian", "Arabic"] },
             { id: "accent", label: "Accent", options: ["American", "British", "Australian", "Southern", "New York", "Russian", "French", "German"] },
             { id: "tone", label: "Tone", options: ["Angry", "Happy", "Sad", "Neutral", "Excited", "Scared", "Whispering", "Shouting"] },
+            { id: "actual_speech", label: "Actual Speech", options: [], type: "textarea" },
         ]
     }
 ];

@@ -31,6 +31,7 @@ export type FieldConfig = {
     label: string;
     options: string[];
     allowCustom?: boolean;
+    type?: "select" | "textarea";
 };
 
 export const INITIAL_STATE: PromptState = {
