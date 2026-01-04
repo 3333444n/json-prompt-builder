@@ -14,6 +14,8 @@ export function PresetsPanel() {
         updateField("cinematography", "camera", ["Arri Alexa"]);
         updateField("cinematography", "lighting_style", ["Cinematic"]);
         updateField("cinematography", "film_stock", ["Kodak Portra 400"]);
+        updateField("cinematography", "photo_style", ["Cine Still"]);
+        updateField("cinematography", "camera_angle", ["Full Shot"]);
     };
 
     const applyUGC = () => {

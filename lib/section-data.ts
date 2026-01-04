@@ -92,8 +92,8 @@ export const SECTIONS: SectionConfig[] = [
         visibleFor: ["photo", "video"],
         descriptionPrefix: "CAMERA:",
         fields: [
-            { id: "photo_style", label: "Photo Style", options: ["Urban", "Editorial", "Street", "Documentary", "Black and White", "Color", "Vintage", "Analog", "UGC"] },
-            { id: "camera_angle", label: "Camera Angle", options: ["Eye Level", "Low Angle", "High Angle", "Over the Shoulder", "Close-up", "Medium Shot", "Full Body"] },
+            { id: "photo_style", label: "Photo Style", options: ["Urban", "Editorial", "Street", "Documentary", "Black and White", "Color", "Vintage", "Analog", "UGC", "Cine Still"] },
+            { id: "camera_angle", label: "Camera Angle", options: ["Eye Level", "Low Angle", "High Angle", "Over the Shoulder", "Close-up", "Medium Shot", "Full Body", "Cowboy Shot", "Extreme Close-up", "Wide Shot", "Full Shot", "Medium Close-up", "American Shot", "Medium Long"] },
             { id: "camera", label: "Camera Model", options: ["Sony A7RIV", "Canon R5", "Nikon Z9", "Leica M11", "Hasselblad", "Fujifilm GFX", "Arri Alexa", "Red Komodo", "iPhone", "Film Camera", "GoPro Hero"] },
             { id: "lenses", label: "Lenses", options: ["8mm-fisheye", "12mm-wide angle", "24mm-normal", "35mm-medium", "50mm-telephoto", "85mm-telephoto", "105mm-telephoto", "200mm-telephoto", "Macro", "Anamorphic", "Prime", "Zoom"] },
             { id: "film_stock", label: "Film Stock", options: ["Kodak Portra 400", "Kodak Gold 200", "Fujifilm Velvia", "Ilford HP5", "Cinestill 800T", "Ektachrome"] },
@@ -111,6 +111,10 @@ export const SECTIONS: SectionConfig[] = [
             { id: "source", label: "Light Source", options: ["Sun", "Moon", "Lamp", "Fire", "Neon Sign", "Candle", "Flash", "Softbox", "Ring Light"] },
             { id: "color", label: "Light Color", options: ["Warm", "Cool", "Neutral", "Red", "Blue", "Green", "Purple", "Orange", "Multicolor"] },
             { id: "intensity", label: "Intensity", options: ["Bright", "Dim", "Soft", "Harsh", "Shadowy", "High Contrast", "Low Contrast"] },
+            { id: "direction", label: "Direction", options: ["Front", "Back", "Side", "Overhead", "Underneath", "Ambient"] },
+            { id: "shadows", label: "Shadows", options: ["Hard", "Soft", "Long", "Short", "Deep", "Shallow", "Contrasty", "Diffuse"] },
+            { id: "contrast-ratio", label: "Contrast Ratio", options: ["2:1 Low", "3:1", "4:1 Medium", "5:1", "6:1 High", "7:1", "8:1 Very High", "9:1", "10:1 Super High"] },
+
         ]
     },
     {
