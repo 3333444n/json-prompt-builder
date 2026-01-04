@@ -10,12 +10,13 @@ export function PresetsPanel() {
     const { state, updateField, dispatch } = usePrompt();
 
     const applyCinematic = () => {
-        updateField("cinematography", "shot_type", ["Wide Angle"]);
         updateField("cinematography", "camera", ["Arri Alexa"]);
         updateField("cinematography", "lighting_style", ["Cinematic"]);
         updateField("cinematography", "film_stock", ["Kodak Portra 400"]);
-        updateField("cinematography", "photo_style", ["Cine Still"]);
+        updateField("cinematography", "photo_style", ["Cine Still", "Hyperrealistic"]);
         updateField("cinematography", "camera_angle", ["Full Shot"]);
+        updateField("cinematography", "lenses", ["12mm-wide angle"]);
+        updateField("cinematography", "effects", ["Bokeh", "Grain", "Depth of Field", "Halation"]);
     };
 
     const applyUGC = () => {

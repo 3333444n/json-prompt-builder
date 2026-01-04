@@ -92,13 +92,13 @@ export const SECTIONS: SectionConfig[] = [
         visibleFor: ["photo", "video"],
         descriptionPrefix: "CAMERA:",
         fields: [
-            { id: "photo_style", label: "Photo Style", options: ["Urban", "Editorial", "Street", "Documentary", "Black and White", "Color", "Vintage", "Analog", "UGC", "Cine Still"] },
+            { id: "photo_style", label: "Photo Style", options: ["Urban", "Editorial", "Street", "Documentary", "Black and White", "Color", "Vintage", "Analog", "UGC", "Cine Still", "Landscape", "Portrait", "Hyperrealistic"] },
             { id: "camera_angle", label: "Camera Angle", options: ["Eye Level", "Low Angle", "High Angle", "Over the Shoulder", "Close-up", "Medium Shot", "Full Body", "Cowboy Shot", "Extreme Close-up", "Wide Shot", "Full Shot", "Medium Close-up", "American Shot", "Medium Long"] },
             { id: "camera", label: "Camera Model", options: ["Sony A7RIV", "Canon R5", "Nikon Z9", "Leica M11", "Hasselblad", "Fujifilm GFX", "Arri Alexa", "Red Komodo", "iPhone", "Film Camera", "GoPro Hero"] },
             { id: "lenses", label: "Lenses", options: ["8mm-fisheye", "12mm-wide angle", "24mm-normal", "35mm-medium", "50mm-telephoto", "85mm-telephoto", "105mm-telephoto", "200mm-telephoto", "Macro", "Anamorphic", "Prime", "Zoom"] },
             { id: "film_stock", label: "Film Stock", options: ["Kodak Portra 400", "Kodak Gold 200", "Fujifilm Velvia", "Ilford HP5", "Cinestill 800T", "Ektachrome"] },
             { id: "lighting_style", label: "Lighting Style", options: ["Cinematic", "Studio", "Natural", "Volumetric", "Rembrandt", "Split", "Butterfly", "Loop", "Rim Light", "Silhouette", "Neon", "Cyberpunk"] },
-            { id: "effects", label: "Effects", options: ["Bokeh", "Motion Blur", "Grain", "Vignette", "Chromatic Aberration", "Lens Flare", "Double Exposure", "Glitch"] },
+            { id: "effects", label: "Effects", options: ["Bokeh", "Motion Blur", "Grain", "Vignette", "Chromatic Aberration", "Lens Flare", "Double Exposure", "Glitch", "Halation", "Distortion"] },
         ]
     },
     {

@@ -78,9 +78,9 @@ export function MultiSelect({
             </div>
 
             <div className={cn(
-                "relative rounded-none border-2 border-border bg-card p-1 shadow-brutal focus-within:shadow-none focus-within:translate-x-[2px] focus-within:translate-y-[2px] transition-all"
+                "relative rounded-none border-2 border-border bg-card shadow-brutal focus-within:shadow-none focus-within:translate-x-[2px] focus-within:translate-y-[2px] transition-all"
             )}>
-                <div className="flex flex-wrap gap-2 p-1 max-h-48 overflow-y-auto">
+                <div className="flex flex-wrap gap-2 p-3 max-h-60 overflow-y-auto">
                     {options.map((option) => {
                         const isSelected = selected.includes(option);
                         if (isSelected) return null; // Don't show already selected in the list to save space? Or stick to standard?
