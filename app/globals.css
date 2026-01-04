@@ -35,6 +35,11 @@
     /* Sharp edges for vegan brutalism */
 
     /* Section Colors (HSL) */
+    /* Scene - Lime */
+    --section-scene: 85 100% 45%;
+    --section-scene-foreground: 85 100% 95%;
+    --section-scene-muted: 85 100% 90%;
+
     /* Character - Blue */
     --section-character: 210 100% 50%;
     --section-character-foreground: 210 100% 95%;
@@ -106,6 +111,11 @@
     --ring: 0 0% 83%;
 
     /* Dark mode adjustments ensuring contrast */
+     /* Scene - Lime */
+    --section-scene: 85 100% 35%;
+    --section-scene-foreground: 85 100% 95%;
+    --section-scene-muted: 85 50% 15%;
+
     /* Character - Blue */
     --section-character: 210 100% 40%;
     --section-character-foreground: 210 100% 95%;

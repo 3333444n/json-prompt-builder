@@ -1,4 +1,5 @@
 export type SectionId =
+    | "scene"
     | "character"
     | "cinematography"
     | "pose"
@@ -37,6 +38,7 @@ export type FieldConfig = {
 export const INITIAL_STATE: PromptState = {
     mediaType: "photo",
     sections: {
+        scene: {},
         character: {},
         cinematography: {},
         pose: {},

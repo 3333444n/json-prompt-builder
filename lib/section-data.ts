@@ -2,6 +2,20 @@ import { SectionConfig } from "@/types/prompt";
 
 export const SECTIONS: SectionConfig[] = [
     {
+        id: "scene",
+        label: "Scene",
+        color: "section-scene",
+        visibleFor: ["photo", "video"],
+        fields: [
+            { id: "description", label: "Scene Description", options: [], type: "textarea" },
+            { id: "atmosphere", label: "Atmosphere", options: ["Eerie", "Joyful", "Tense", "Peaceful", "Chaotic", "Dreamy", "Nostalgic", "Melancholic", "Romantic", "Mysterious"] },
+            { id: "time_period", label: "Time Period", options: ["Ancient Rome", "Medieval", "Victorian", "1920s", "1950s", "1980s", "Modern Day", "Cyberpunk Future", "Post-Apocalyptic", "Stone Age"] },
+            { id: "architecture", label: "Architecture", options: ["Brutalist", "Gothic", "Modern", "Art Deco", "Baroque", "Industrial", "Minimalist", "Organic", "Traditional Japanese"] },
+            { id: "weather_environment", label: "Weather & Environment", options: ["Stormy", "Sunny", "Foggy", "Snowing", "Raining", "Overcast", "Windy", "Dusty", "Tropical"] },
+            { id: "crowd", label: "Crowd / Population", options: ["Deserted", "Sparse", "Bustling", "Crowded", "Overcrowded", "Couple Only", "Solo Figure"] },
+        ]
+    },
+    {
         id: "character",
         label: "Character",
         color: "section-character",
