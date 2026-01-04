@@ -26,6 +26,7 @@ export type SectionConfig = {
     color: string; // Tailwind class partial, e.g. "section-character"
     fields: FieldConfig[];
     visibleFor: MediaType[];
+    descriptionPrefix?: string;
 };
 
 export type FieldConfig = {

@@ -6,6 +6,7 @@ export const SECTIONS: SectionConfig[] = [
         label: "Scene",
         color: "section-scene",
         visibleFor: ["photo", "video"],
+        descriptionPrefix: "SCENE:",
         fields: [
             { id: "description", label: "Scene Description", options: [], type: "textarea" },
             { id: "atmosphere", label: "Atmosphere", options: ["Eerie", "Joyful", "Tense", "Peaceful", "Chaotic", "Dreamy", "Nostalgic", "Melancholic", "Romantic", "Mysterious"] },
@@ -20,6 +21,7 @@ export const SECTIONS: SectionConfig[] = [
         label: "References",
         color: "section-references",
         visibleFor: ["photo", "video"],
+        descriptionPrefix: "REFERENCES:",
         fields: [
             { id: "images", label: "Image References", options: [], type: "dynamic_list" },
         ]
@@ -29,6 +31,7 @@ export const SECTIONS: SectionConfig[] = [
         label: "Character",
         color: "section-character",
         visibleFor: ["photo", "video"],
+        descriptionPrefix: "CHARACTER:",
         fields: [
             { id: "gender", label: "Gender", options: ["Male", "Female", "Non-binary", "Androgynous", "Robot", "Alien", "Creature"] },
             { id: "race", label: "Race/Ethnicity", options: ["Caucasian", "African", "Asian", "Latino", "Middle Eastern", "Native American", "Fantasy Race", "Mixed"] },
@@ -46,6 +49,7 @@ export const SECTIONS: SectionConfig[] = [
         label: "Clothing",
         color: "section-clothing",
         visibleFor: ["photo", "video"],
+        descriptionPrefix: "CLOTHING:",
         fields: [
             { id: "style", label: "Style", options: ["Casual", "Formal", "Streetwear", "Cyberpunk", "Steampunk", "Fantasy", "Sci-fi", "Vintage", "Retro", "Minimalist", "Avant-garde", "Military", "Goth", "Punk"] },
             { id: "top", label: "Tops", options: ["T-shirt", "Shirt", "Blouse", "Hoodie", "Jacket", "Coat", "Tank Top", "Suit Jacket", "Robe", "Armor", "Sweater"] },
@@ -60,6 +64,7 @@ export const SECTIONS: SectionConfig[] = [
         label: "Pose",
         color: "section-pose",
         visibleFor: ["photo", "video"],
+        descriptionPrefix: "POSE:",
         fields: [
             { id: "type", label: "Pose Type", options: ["Standing", "Sitting", "Lying Down", "Walking", "Running", "Jumping", "Fighting", "Dancing", "Floating", "Flying", "Falling", "Kneeling"] },
             { id: "angle", label: "Angle", options: ["Front View", "Side View", "Back View", "Three-Quarter View", "Over-the-shoulder", "Dynamic Angle"] },
@@ -72,6 +77,7 @@ export const SECTIONS: SectionConfig[] = [
         label: "Place",
         color: "section-place",
         visibleFor: ["photo", "video"],
+        descriptionPrefix: "LOCATION:",
         fields: [
             { id: "setting", label: "Setting", options: ["Indoor", "Outdoor", "Studio", "Nature", "Urban", "Space", "Underwater", "Fantasy World", "Cyberpunk City"] },
             { id: "location", label: "Specific Location", options: ["Bedroom", "Living Room", "Kitchen", "Office", "Street", "Forest", "Beach", "Mountain", "Desert", "City Setting", "Ruins", "Laboratory", "Spaceship"] },
@@ -84,6 +90,7 @@ export const SECTIONS: SectionConfig[] = [
         label: "Cinematography",
         color: "section-cinematography",
         visibleFor: ["photo", "video"],
+        descriptionPrefix: "CAMERA:",
         fields: [
             { id: "shot_type", label: "Shot Type", options: ["Macro", "Telephoto", "Wide Angle", "Fisheye", "Drone", "GoPro", "CCTV", "Polaroid", "Vintage Film", "Isometric", "Selfie"] },
             { id: "camera", label: "Camera Model", options: ["Sony A7RIV", "Canon R5", "Nikon Z9", "Leica M11", "Hasselblad", "Fujifilm GFX", "Arri Alexa", "Red Komodo", "iPhone", "Film Camera"] },
@@ -97,6 +104,7 @@ export const SECTIONS: SectionConfig[] = [
         label: "Lighting",
         color: "section-lighting",
         visibleFor: ["photo", "video"],
+        descriptionPrefix: "LIGHTING:",
         fields: [
             { id: "source", label: "Light Source", options: ["Sun", "Moon", "Lamp", "Fire", "Neon Sign", "Candle", "Flash", "Softbox", "Ring Light"] },
             { id: "color", label: "Light Color", options: ["Warm", "Cool", "Neutral", "Red", "Blue", "Green", "Purple", "Orange", "Multicolor"] },
@@ -108,6 +116,7 @@ export const SECTIONS: SectionConfig[] = [
         label: "Color Palette",
         color: "section-palette",
         visibleFor: ["photo", "video"],
+        descriptionPrefix: "COLOR PALETTE:",
         fields: [
             { id: "main", label: "Dominant Colors", options: ["Red", "Blue", "Green", "Yellow", "Orange", "Purple", "Pink", "Black", "White", "Grey", "Brown", "Gold", "Silver"] },
             { id: "vibe", label: "Vibe", options: ["Pastel", "Neon", "Dark", "Moody", "Vibrant", "Muted", "Monochrome", "Analogous", "Complementary", "Triadic"] },
@@ -118,6 +127,7 @@ export const SECTIONS: SectionConfig[] = [
         label: "Camera Motion",
         color: "section-video",
         visibleFor: ["video"],
+        descriptionPrefix: "CAMERA MOTION:",
         fields: [
             { id: "movement", label: "Movement", options: ["Static", "Pan", "Tilt", "Zoom In", "Zoom Out", "Dolly In", "Dolly Out", "Truck", "Pedestal", "Arc", "Handheld", "Shake", "Tracking"] },
             { id: "speed", label: "Speed", options: ["Slow", "Normal", "Fast", "Hyperlapse", "Timelapse", "Slow Motion", "Ramp"] },
@@ -129,6 +139,7 @@ export const SECTIONS: SectionConfig[] = [
         label: "Character Action",
         color: "section-video",
         visibleFor: ["video"],
+        descriptionPrefix: "ACTION:",
         fields: [
             { id: "activity", label: "Activity", options: ["Walking", "Running", "Dancing", "Fighting", "Swimming", "Driving", "Flying", "Talking", "Laughing", "Crying", "Eating", "Drinking", "Smoking", "Reading", "Writing", "Typing"] },
             { id: "interaction", label: "Interaction", options: ["With Object", "With Person", "With Animal", "With Environment"] },
@@ -139,6 +150,7 @@ export const SECTIONS: SectionConfig[] = [
         label: "Sound",
         color: "section-video",
         visibleFor: ["video"],
+        descriptionPrefix: "SOUND:",
         fields: [
             { id: "details", label: "Sound Effects", options: ["Footsteps", "Rain", "Wind", "Traffic", "Explosion", "Gunshots", "Screams", "Whispers", "Music", "Silence", "Ambient"] },
         ]
@@ -148,6 +160,7 @@ export const SECTIONS: SectionConfig[] = [
         label: "Speech",
         color: "section-video",
         visibleFor: ["video"],
+        descriptionPrefix: "SPEECH:",
         fields: [
             { id: "language", label: "Language", options: ["English", "Spanish", "French", "German", "Japanese", "Chinese", "Russian", "Arabic"] },
             { id: "accent", label: "Accent", options: ["American", "British", "Australian", "Southern", "New York", "Russian", "French", "German"] },

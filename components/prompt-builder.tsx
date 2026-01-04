@@ -20,7 +20,7 @@ export function PromptBuilder() {
     return (
         <div className="grid grid-cols-1 lg:grid-cols-2 min-h-screen bg-background text-foreground">
             {/* Left Column: Form */}
-            <div className="p-4 md:p-8 lg:p-12 border-r-4 border-black dark:border-border overflow-y-auto">
+            <div className="p-4 md:p-8 lg:p-12 border-r-4 border-black dark:border-border">
                 <header className="mb-12 flex justify-between items-start">
                     <div>
                         <h1 className="text-4xl md:text-6xl font-black mb-4 tracking-tighter uppercase">Prompt Maker</h1>
@@ -141,36 +141,38 @@ export function PromptBuilder() {
             </div>
 
             {/* Right Column: Key Output */}
-            <div className="p-4 md:p-8 lg:p-12 bg-muted/20 hidden lg:block relative">
-                <div className="absolute top-8 right-8 z-10 flex gap-2">
-                    <button
-                        onClick={() => setViewMode("text")}
-                        className={cn(
-                            "flex items-center gap-2 px-4 py-2 font-mono font-bold text-sm border-2 border-black dark:border-white transition-all shadow-brutal",
-                            viewMode === "text"
-                                ? "bg-black text-white dark:bg-white dark:text-black translate-x-[2px] translate-y-[2px] shadow-none"
-                                : "bg-card hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none"
-                        )}
-                    >
-                        <FileText className="w-4 h-4" />
-                        Text
-                    </button>
-                    <button
-                        onClick={() => setViewMode("json")}
-                        className={cn(
-                            "flex items-center gap-2 px-4 py-2 font-mono font-bold text-sm border-2 border-black dark:border-white transition-all shadow-brutal",
-                            viewMode === "json"
-                                ? "bg-black text-white dark:bg-white dark:text-black translate-x-[2px] translate-y-[2px] shadow-none"
-                                : "bg-card hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none"
-                        )}
-                    >
-                        <FileCode className="w-4 h-4" />
-                        JSON
-                    </button>
-                </div>
+            <div className="hidden lg:block relative p-4 md:p-8 lg:p-12 bg-muted/20">
+                <div className="sticky top-6 h-[calc(100vh-3rem)] flex flex-col">
+                    <div className="flex justify-end gap-2 mb-6">
+                        <button
+                            onClick={() => setViewMode("text")}
+                            className={cn(
+                                "flex items-center gap-2 px-4 py-2 font-mono font-bold text-sm border-2 border-black dark:border-white transition-all shadow-brutal",
+                                viewMode === "text"
+                                    ? "bg-black text-white dark:bg-white dark:text-black translate-x-[2px] translate-y-[2px] shadow-none"
+                                    : "bg-card hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none"
+                            )}
+                        >
+                            <FileText className="w-4 h-4" />
+                            Text
+                        </button>
+                        <button
+                            onClick={() => setViewMode("json")}
+                            className={cn(
+                                "flex items-center gap-2 px-4 py-2 font-mono font-bold text-sm border-2 border-black dark:border-white transition-all shadow-brutal",
+                                viewMode === "json"
+                                    ? "bg-black text-white dark:bg-white dark:text-black translate-x-[2px] translate-y-[2px] shadow-none"
+                                    : "bg-card hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none"
+                            )}
+                        >
+                            <FileCode className="w-4 h-4" />
+                            JSON
+                        </button>
+                    </div>
 
-                <div className="pt-16">
-                    {viewMode === "json" ? <JSONPreview /> : <TextPreview />}
+                    <div className="flex-1 overflow-auto">
+                        {viewMode === "json" ? <JSONPreview /> : <TextPreview />}
+                    </div>
                 </div>
             </div>
 

@@ -13,9 +13,13 @@ export function TextPreview() {
         const parts: { text: string; sectionId?: string }[] = [];
 
         // 1. Scene Description (This is usually the main subject/setting)
+        // 1. Scene Description (This is usually the main subject/setting)
         const sceneDesc = state.sections.scene?.description?.[0];
+
+        // Prefix with media type and scene description
+        let prefixStr = state.mediaType === "photo" ? "A photograph of " : "A video of ";
         if (sceneDesc) {
-            parts.push({ text: sceneDesc, sectionId: "scene" });
+            prefixStr += `${sceneDesc}`;
         }
 
         // 2. Iterate other sections
@@ -52,6 +56,14 @@ export function TextPreview() {
                 // Skip the description field as we handled it first (if it's the scene section)
                 if (sectionId === "scene" && fieldId === "description") return;
 
+                // Special handling for references
+                if (sectionId === "references" && fieldId === "images") {
+                    values.forEach((val, idx) => {
+                        sectionParts.push(`Image ${idx + 1}, ${val}`);
+                    });
+                    return;
+                }
+
                 // For speech/actual_speech, maybe we want quotes?
                 if (sectionId === "speech" && fieldId === "actual_speech") {
                     sectionParts.push(`"${values[0]}"`);
@@ -66,16 +78,19 @@ export function TextPreview() {
             }
         });
 
-        // Prefix with media type
-        const prefixStr = state.mediaType === "photo" ? "A photograph of " : "A video of ";
+
 
         // Construct full text for copy
-        const finalText = `${prefixStr}${parts.map(p => p.text).join(", ")}`;
+        const finalText = `${prefixStr}\n\n${parts.map(p => {
+            const sectionConfig = SECTIONS.find(s => s.id === p.sectionId);
+            const prefix = sectionConfig?.descriptionPrefix;
+            return prefix ? `${prefix} ${p.text}` : p.text;
+        }).join("\n\n")}`;
 
         return {
             segments: parts,
             prefix: prefixStr,
-            fullText: finalText.replace(/, ,/g, ",").trim()
+            fullText: finalText.trim()
         };
     }, [state]);
 
@@ -86,8 +101,8 @@ export function TextPreview() {
     };
 
     return (
-        <div className="sticky top-6 h-[calc(100vh-3rem)] flex flex-col">
-            <div className="flex items-center justify-between mb-2">
+        <div className="flex flex-col h-full">
+            <div className="flex items-center justify-between mb-4">
                 <h3 className="font-mono text-xl font-bold uppercase">Prompt Text</h3>
                 <button
                     onClick={handleCopy}
@@ -96,22 +111,29 @@ export function TextPreview() {
                     {copied ? "Copied!" : <><Copy className="w-4 h-4" /> Copy</>}
                 </button>
             </div>
-            <div className="flex-1 rounded-sm border-4 border-black dark:border-white bg-card p-4 overflow-auto shadow-brutal font-mono text-lg leading-relaxed">
+            <div className="flex-1 rounded-sm border-4 border-black dark:border-white bg-card p-4 shadow-brutal font-mono text-lg leading-relaxed">
                 <p className="whitespace-pre-wrap text-foreground">
-                    {prefix}
+                    <span className="block mb-4 font-bold">{prefix}</span>
                     {segments.map((seg, i) => {
                         const sectionConfig = SECTIONS.find(s => s.id === seg.sectionId);
                         const colorVar = sectionConfig ? sectionConfig.color : 'section-scene';
+                        const prefix = sectionConfig?.descriptionPrefix;
 
                         return (
                             <React.Fragment key={i}>
-                                <span
-                                    style={{ backgroundColor: `hsl(var(--${colorVar}) / 0.15)` }}
-                                    className="rounded px-1 -mx-1"
-                                >
-                                    {seg.text}
-                                </span>
-                                {i < segments.length - 1 && ", "}
+                                <div className="mb-4">
+                                    {prefix && (
+                                        <span className="font-bold mr-2 uppercase opacity-70 text-base block sm:inline">
+                                            {prefix}
+                                        </span>
+                                    )}
+                                    <span
+                                        style={{ backgroundColor: `hsl(var(--${colorVar}) / 0.15)` }}
+                                        className="rounded px-1 -mx-1"
+                                    >
+                                        {seg.text}
+                                    </span>
+                                </div>
                             </React.Fragment>
                         );
                     })}
