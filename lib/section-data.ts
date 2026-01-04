@@ -33,7 +33,7 @@ export const SECTIONS: SectionConfig[] = [
             { id: "race", label: "Race/Ethnicity", options: ["Caucasian", "African", "Asian", "Latino", "Middle Eastern", "Native American", "Fantasy Race", "Mixed"] },
             { id: "age", label: "Age", options: ["Infant", "Child", "Teenager", "Young Adult", "Adult", "Middle-aged", "Elderly", "Ancient"] },
             { id: "body", label: "Body Type", options: ["Slim", "Athletic", "Muscular", "Curvy", "Plus-size", "Skinny", "Average", "Giant", "Petite"] },
-            { id: "skin", label: "Skin Details", options: ["Pale", "Tan", "Dark", "Freckled", "Scarred", "Tattooed", "Oily", "Wet", "Rough", "Porcelain", "Visible Pores", "Metallic", "Glowing"] },
+            { id: "skin", label: "Skin Details", options: ["Pale", "Tan", "Dark", "Freckled", "Scarred", "Tattooed", "Oily", "Wet", "Rough", "Porcelain", "Visible Pores", "Metallic", "Glowing", "Subtle Subsurface Scattering", "Faint Asymmetry"] },
             { id: "hair_style", label: "Hair Style", options: ["Long", "Short", "Bald", "Buzz Cut", "Bob", "Curly", "Straight", "Wavy", "Braided", "Dreadlocks", "Messy", "Slicked Back"] },
             { id: "hair_color", label: "Hair Color", options: ["Black", "Blonde", "Brunette", "Red", "White", "Grey", "Pink", "Blue", "Green", "Pastel", "Neon"] },
             { id: "eyes", label: "Eyes", options: ["Blue", "Green", "Brown", "Hazel", "Grey", "Red", "Glowing", "Heterochromia", "Blind"] },
