@@ -112,7 +112,7 @@ export function TextPreview() {
                 </button>
             </div>
             <div className="flex-1 rounded-sm border-4 border-black dark:border-white bg-card p-4 shadow-brutal font-mono text-lg leading-relaxed">
-                <p className="whitespace-pre-wrap text-foreground">
+                <div className="whitespace-pre-wrap text-foreground">
                     <span className="block mb-4 font-bold">{prefix}</span>
                     {segments.map((seg, i) => {
                         const sectionConfig = SECTIONS.find(s => s.id === seg.sectionId);
@@ -137,7 +137,7 @@ export function TextPreview() {
                             </React.Fragment>
                         );
                     })}
-                </p>
+                </div>
             </div>
         </div>
     );

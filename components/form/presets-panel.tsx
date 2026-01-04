@@ -8,6 +8,80 @@ import { SECTIONS } from "@/lib/section-data";
 
 export function PresetsPanel() {
     const { state, updateField, dispatch } = usePrompt();
+    const [savedPresets, setSavedPresets] = React.useState<{ name: string; date: string; data: any }[]>([]);
+
+    // UI States
+    const [isSaving, setIsSaving] = React.useState(false);
+    const [saveName, setSaveName] = React.useState("");
+    const [confirmDeleteIndex, setConfirmDeleteIndex] = React.useState<number | null>(null);
+
+    React.useEffect(() => {
+        const saved = localStorage.getItem("prompt-maker-presets");
+        if (saved) {
+            try {
+                setSavedPresets(JSON.parse(saved));
+            } catch (e) {
+                console.error("Failed to parse saved presets", e);
+            }
+        }
+    }, []);
+
+    const startSave = () => {
+        setSaveName(`Preset ${savedPresets.length + 1}`);
+        setIsSaving(true);
+    };
+
+    const cancelSave = () => {
+        setIsSaving(false);
+        setSaveName("");
+    };
+
+    const confirmSave = (e?: React.FormEvent) => {
+        if (e) e.preventDefault();
+        if (!saveName.trim()) return;
+
+        const newPreset = {
+            name: saveName,
+            date: new Date().toISOString(),
+            data: state.sections,
+        };
+
+        const updatedPresets = [...savedPresets, newPreset];
+        setSavedPresets(updatedPresets);
+        localStorage.setItem("prompt-maker-presets", JSON.stringify(updatedPresets));
+
+        setIsSaving(false);
+        setSaveName("");
+    };
+
+    const handleDeleteClick = (index: number, e: React.MouseEvent) => {
+        e.stopPropagation();
+        if (confirmDeleteIndex === index) {
+            // Actually delete
+            const updatedPresets = savedPresets.filter((_, i) => i !== index);
+            setSavedPresets(updatedPresets);
+            localStorage.setItem("prompt-maker-presets", JSON.stringify(updatedPresets));
+            setConfirmDeleteIndex(null);
+        } else {
+            // First click, ask for confirmation
+            setConfirmDeleteIndex(index);
+            // Auto reset confirmation after 3 seconds
+            setTimeout(() => setConfirmDeleteIndex(null), 3000);
+        }
+    };
+
+    const applySavedPreset = (presetData: any) => {
+        dispatch({ type: "RESET" });
+        setTimeout(() => {
+            Object.entries(presetData).forEach(([sectionId, fields]) => {
+                if (typeof fields === "object" && fields !== null) {
+                    Object.entries(fields as any).forEach(([fieldId, value]) => {
+                        updateField(sectionId as any, fieldId, value as string[]);
+                    });
+                }
+            });
+        }, 0);
+    };
 
     const applyCinematic = () => {
         updateField("cinematography", "camera", ["Arri Alexa"]);
@@ -118,8 +192,35 @@ export function PresetsPanel() {
 
     return (
         <div className="mb-8">
-            <h3 className="font-mono text-sm font-bold uppercase tracking-wider mb-3 opacity-70">
-                Quick Presets
+            <h3 className="flex items-center justify-between font-mono text-sm font-bold uppercase tracking-wider mb-3 opacity-70 h-8">
+                {isSaving ? (
+                    <form onSubmit={confirmSave} className="flex items-center gap-2 w-full animate-in fade-in slide-in-from-right-2 duration-200">
+                        <input
+                            autoFocus
+                            type="text"
+                            value={saveName}
+                            onChange={(e) => setSaveName(e.target.value)}
+                            onKeyDown={(e) => {
+                                if (e.key === 'Escape') cancelSave();
+                            }}
+                            className="flex-1 bg-background border border-black/20 dark:border-white/20 px-2 py-0.5 text-xs font-mono rounded-none focus:outline-none focus:border-black dark:focus:border-white"
+                            placeholder="Preset Name..."
+                        />
+                        <button type="submit" className="text-green-500 hover:text-green-600 px-1 font-bold">✓</button>
+                        <button type="button" onClick={cancelSave} className="text-red-500 hover:text-red-600 px-1 font-bold">✕</button>
+                    </form>
+                ) : (
+                    <>
+                        <span>Quick Presets</span>
+                        <button
+                            onClick={startSave}
+                            className="flex items-center gap-1 text-[10px] hover:underline hover:opacity-100 opacity-70"
+                        >
+                            <Clapperboard className="w-3 h-3" />
+                            SAVE CURRENT
+                        </button>
+                    </>
+                )}
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <button
@@ -199,6 +300,38 @@ export function PresetsPanel() {
                         <div className="text-[10px] md:text-xs opacity-70 font-mono truncate">Editorial, Studio...</div>
                     </div>
                 </button>
+
+                {/* User Presets */}
+                {savedPresets.map((preset, index) => (
+                    <button
+                        key={index}
+                        onClick={() => applySavedPreset(preset.data)}
+                        className={buttonClass}
+                    >
+                        <div className="p-2 bg-indigo-400 border-2 border-black rounded-full shrink-0">
+                            <Clapperboard className="w-4 h-4 text-black" />
+                        </div>
+                        <div className="min-w-0 flex-1">
+                            <div className="font-bold font-mono uppercase text-sm truncate">{preset.name}</div>
+                            <div className="text-[10px] md:text-xs opacity-70 font-mono truncate">
+                                User Preset
+                            </div>
+                        </div>
+                        <div
+                            role="button"
+                            onClick={(e) => handleDeleteClick(index, e)}
+                            className={cn(
+                                "p-1 rounded-full transition-all duration-200",
+                                confirmDeleteIndex === index
+                                    ? "bg-red-500 text-white hover:bg-red-600 scale-110"
+                                    : "hover:bg-red-500 hover:text-white"
+                            )}
+                            title={confirmDeleteIndex === index ? "Click to confirm delete" : "Delete preset"}
+                        >
+                            <Trash2 className="w-3 h-3" />
+                        </div>
+                    </button>
+                ))}
             </div>
         </div>
     );
