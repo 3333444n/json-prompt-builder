@@ -1,26 +1,159 @@
 @import "tailwindcss";
+@config "../tailwind.config.ts";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: 0 0% 100%;
+    --foreground: 0 0% 0%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 0%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 0%;
+
+    --primary: 0 0% 0%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 0%;
+
+    --muted: 0 0% 90%;
+    --muted-foreground: 0 0% 40%;
+
+    --accent: 0 0% 90%;
+    --accent-foreground: 0 0% 0%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 0%;
+    --input: 0 0% 0%;
+    --ring: 0 0% 0%;
+
+    --radius: 0rem;
+    /* Sharp edges for vegan brutalism */
+
+    /* Section Colors (HSL) */
+    /* Character - Blue */
+    --section-character: 210 100% 50%;
+    --section-character-foreground: 210 100% 95%;
+    --section-character-muted: 210 100% 90%;
+
+    /* Cinematography - Red */
+    --section-cinematography: 0 100% 50%;
+    --section-cinematography-foreground: 0 100% 95%;
+    --section-cinematography-muted: 0 100% 90%;
+
+    /* Pose - Green */
+    --section-pose: 120 100% 25%;
+    --section-pose-foreground: 120 100% 95%;
+    --section-pose-muted: 120 100% 90%;
+
+    /* Clothing - Purple */
+    --section-clothing: 270 100% 50%;
+    --section-clothing-foreground: 270 100% 95%;
+    --section-clothing-muted: 270 100% 90%;
+
+    /* Lighting - Yellow */
+    --section-lighting: 50 100% 50%;
+    --section-lighting-foreground: 50 100% 10%;
+    --section-lighting-muted: 50 100% 90%;
+
+    /* Place - Teal */
+    --section-place: 180 100% 30%;
+    --section-place-foreground: 180 100% 95%;
+    --section-place-muted: 180 100% 90%;
+
+    /* Palette - Pink */
+    --section-palette: 330 100% 50%;
+    --section-palette-foreground: 330 100% 95%;
+    --section-palette-muted: 330 100% 90%;
+
+    /* Video - Orange */
+    --section-video: 30 100% 50%;
+    --section-video-foreground: 30 100% 95%;
+    --section-video-muted: 30 100% 90%;
+  }
+
+  .dark {
+    --background: 0 0% 3%;
+    --foreground: 0 0% 100%;
+
+    --card: 0 0% 3%;
+    --card-foreground: 0 0% 100%;
+
+    --popover: 0 0% 3%;
+    --popover-foreground: 0 0% 100%;
+
+    --primary: 0 0% 100%;
+    --primary-foreground: 0 0% 0%;
+
+    --secondary: 0 0% 10%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 64%;
+
+    --accent: 0 0% 15%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 100%;
+    --input: 0 0% 100%;
+    --ring: 0 0% 83%;
+
+    /* Dark mode adjustments ensuring contrast */
+    /* Character - Blue */
+    --section-character: 210 100% 40%;
+    --section-character-foreground: 210 100% 95%;
+    --section-character-muted: 210 50% 15%;
+
+    /* Cinematography - Red */
+    --section-cinematography: 0 100% 40%;
+    --section-cinematography-foreground: 0 100% 95%;
+    --section-cinematography-muted: 0 50% 15%;
+
+    /* Pose - Green */
+    --section-pose: 120 100% 25%;
+    --section-pose-foreground: 120 100% 95%;
+    --section-pose-muted: 120 50% 15%;
+
+    /* Clothing - Purple */
+    --section-clothing: 270 100% 40%;
+    --section-clothing-foreground: 270 100% 95%;
+    --section-clothing-muted: 270 50% 15%;
+
+    /* Lighting - Yellow */
+    --section-lighting: 50 100% 40%;
+    --section-lighting-foreground: 50 100% 10%;
+    --section-lighting-muted: 50 50% 15%;
+
+    /* Place - Teal */
+    --section-place: 180 100% 25%;
+    --section-place-foreground: 180 100% 95%;
+    --section-place-muted: 180 50% 15%;
+
+    /* Palette - Pink */
+    --section-palette: 330 100% 40%;
+    --section-palette-foreground: 330 100% 95%;
+    --section-palette-muted: 330 50% 15%;
+
+    /* Video - Orange */
+    --section-video: 30 100% 40%;
+    --section-video-foreground: 30 100% 95%;
+    --section-video-muted: 30 50% 15%;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
 }

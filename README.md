@@ -1,36 +1,137 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Prompt Maker
+
+A brutalist, hyper-minimal web application designed to help users construct detailed JSON prompts for AI image and video generation.
+
+## Features
+
+- **Dynamic Form Builder**: Sections and fields adapt based on the selected media type (Photo vs. Video).
+- **Live JSON Preview**: Real-time updates of your prompt structure as you select options.
+- **Brutalist Design**: High contrast, distinctive color-coded sections, and a stark aesthetic.
+- **Customizable**: Add your own custom values to any field on the fly.
+- **Dark/Light Mode**: Fully supported system-wide theming.
 
 ## Getting Started
 
-First, run the development server:
+1. **Install Dependencies**:
+   ```bash
+   npm install
+   ```
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+2. **Run Development Server**:
+   ```bash
+   npm run dev
+   ```
+
+3. **Build for Production**:
+   ```bash
+   npm run build
+   ```
+
+## Project Structure
+
+- `app/`: Next.js App Router pages and global styles.
+- `components/`: React components.
+  - `ui/`: Reusable primitive components (MultiSelect, Section).
+  - `form/`: specialized form components (JSONPreview).
+- `context/`: State management (PromptContext).
+- `lib/`: Utility functions and **data configuration**.
+- `types/`: TypeScript definitions.
+
+---
+
+## How to Extend
+
+This application is data-driven. Most changes to the form structure do not require touching React components.
+
+### 1. Adding Options to an Existing Field
+To simply add more choices to a dropdown (e.g., adding "Purple" to Hair Color):
+
+1. Open `lib/section-data.ts`.
+2. Locate the relevant section (e.g., `id: "character"`).
+3. Find the field (e.g., `id: "hair_color"`).
+4. Append your new string to the `options` array.
+
+```typescript
+// lib/section-data.ts
+{ 
+  id: "hair_color", 
+  label: "Hair Color", 
+  options: ["Black", ..., "NEW_OPTION_HERE"] 
+}
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Adding a New Field to a Section
+To add a new category within an existing section (e.g., adding "Beard Style" to "Character"):
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Open `lib/section-data.ts`.
+2. Find the section where you want the field.
+3. Add a new object to the `fields` array:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```typescript
+// lib/section-data.ts
+{
+  id: "beard_style",
+  label: "Beard Style",
+  options: ["Stubble", "Full Beard", "Goatee", "Clean Shaven"]
+}
+```
 
-## Learn More
+### 3. Adding a Completely New Section
+To add a brand new major section (e.g., "Post-Processing"):
 
-To learn more about Next.js, take a look at the following resources:
+**Step A: Define the Type**
+Open `types/prompt.ts` and add your new ID to the `SectionId` type union:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```typescript
+// types/prompt.ts
+export type SectionId = 
+  | "character"
+  | ...
+  | "post_processing"; // <-- Add this
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+**Step B: Define Colors**
+Open `app/globals.css`. You must define the CSS variables for your new section so the theme works.
+Follow the pattern `--section-[id]`:
 
-## Deploy on Vercel
+```css
+/* app/globals.css */
+:root {
+  /* ... existing vars ... */
+  
+  /* Post Processing - Cyan */
+  --section-post_processing: 180 100% 50%;
+  --section-post_processing-foreground: 180 100% 5%;
+  --section-post_processing-muted: 180 100% 90%;
+}
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+.dark {
+  /* ... existing vars ... */
+  
+  /* Dark mode variants */
+  --section-post_processing: 180 100% 40%;
+  --section-post_processing-foreground: 180 100% 95%;
+  --section-post_processing-muted: 180 50% 15%;
+}
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+**Step C: Configure the Section**
+Open `lib/section-data.ts` and add the section configuration object to the `SECTIONS` array:
+
+```typescript
+// lib/section-data.ts
+export const SECTIONS: SectionConfig[] = [
+  // ... existing sections
+  {
+    id: "post_processing",
+    label: "Post Processing",
+    color: "section-post_processing", // This matches the CSS variable name suffix
+    visibleFor: ["photo", "video"], // Or just ["photo"] etc.
+    fields: [
+      { id: "grading", label: "Color Grading", options: ["High Contrast", "Sepia", "B&W"] }
+    ]
+  }
+];
+```
+
+That's it! The application will automatically render the new section, apply the correct colors, and include it in the JSON output.
