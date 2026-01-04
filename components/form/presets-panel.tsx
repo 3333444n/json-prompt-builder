@@ -3,11 +3,11 @@
 import React from "react";
 import { usePrompt } from "@/context/prompt-context";
 import { cn } from "@/lib/utils";
-import { Clapperboard, Smartphone, Dices } from "lucide-react";
+import { Clapperboard, Smartphone, Dices, Trash2 } from "lucide-react";
 import { SECTIONS } from "@/lib/section-data";
 
 export function PresetsPanel() {
-    const { state, updateField } = usePrompt();
+    const { state, updateField, dispatch } = usePrompt();
 
     const applyCinematic = () => {
         updateField("cinematography", "shot_type", ["Wide Angle"]);
@@ -38,6 +38,10 @@ export function PresetsPanel() {
         });
     };
 
+    const applyClear = () => {
+        dispatch({ type: "RESET" });
+    };
+
     const buttonClass = "flex items-center gap-3 px-4 py-3 border-2 border-black dark:border-white shadow-brutal hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all bg-card text-left group w-full";
 
     return (
@@ -45,7 +49,33 @@ export function PresetsPanel() {
             <h3 className="font-mono text-sm font-bold uppercase tracking-wider mb-3 opacity-70">
                 Quick Presets
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <button
+                    onClick={applyRandom}
+                    className={buttonClass}
+                >
+                    <div className="p-2 bg-purple-400 border-2 border-black rounded-full shrink-0">
+                        <Dices className="w-4 h-4 text-black" />
+                    </div>
+                    <div className="min-w-0">
+                        <div className="font-bold font-mono uppercase text-sm truncate">Random</div>
+                        <div className="text-[10px] md:text-xs opacity-70 font-mono truncate">Surprise me</div>
+                    </div>
+                </button>
+
+                <button
+                    onClick={applyClear}
+                    className={buttonClass}
+                >
+                    <div className="p-2 bg-red-400 border-2 border-black rounded-full shrink-0">
+                        <Trash2 className="w-4 h-4 text-black" />
+                    </div>
+                    <div className="min-w-0">
+                        <div className="font-bold font-mono uppercase text-sm truncate">Clear</div>
+                        <div className="text-[10px] md:text-xs opacity-70 font-mono truncate">Reset all fields</div>
+                    </div>
+                </button>
+
                 <button
                     onClick={applyCinematic}
                     className={buttonClass}
@@ -69,19 +99,6 @@ export function PresetsPanel() {
                     <div className="min-w-0">
                         <div className="font-bold font-mono uppercase text-sm truncate">UGC</div>
                         <div className="text-[10px] md:text-xs opacity-70 font-mono truncate">iPhone, Selfie...</div>
-                    </div>
-                </button>
-
-                <button
-                    onClick={applyRandom}
-                    className={buttonClass}
-                >
-                    <div className="p-2 bg-purple-400 border-2 border-black rounded-full shrink-0">
-                        <Dices className="w-4 h-4 text-black" />
-                    </div>
-                    <div className="min-w-0">
-                        <div className="font-bold font-mono uppercase text-sm truncate">Random</div>
-                        <div className="text-[10px] md:text-xs opacity-70 font-mono truncate">Surprise me</div>
                     </div>
                 </button>
             </div>
