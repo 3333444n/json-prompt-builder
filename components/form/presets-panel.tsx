@@ -20,9 +20,44 @@ export function PresetsPanel() {
     };
 
     const applyUGC = () => {
-        updateField("cinematography", "shot_type", ["Selfie"]);
+        // Scene
+        updateField("scene", "atmosphere", ["Candid"]);
+
+        // Character
+        updateField("character", "skin", ["Subtle Subsurface Scattering", "Visible Pores", "Faint Asymmetry"]);
+
+        // Pose
+        updateField("pose", "type", ["Facing Camera"]);
+        updateField("pose", "gaze", ["Looking at Camera"]);
+        updateField("pose", "hand", ["Holding the camera"]);
+
+        // Location
+        updateField("place", "setting", ["Indoor"]);
+        updateField("place", "location", ["Bedroom"]);
+        updateField("place", "time", ["Morning"]);
+        updateField("place", "weather", ["Sunny"]);
+        updateField("place", "architecture", ["Modern"]);
+
+        // Lighting
+        updateField("lighting", "source", ["Sun", "Natural Light", "Window"]);
+        updateField("lighting", "color", ["Neutral"]);
+        updateField("lighting", "intensity", ["Soft"]);
+        updateField("lighting", "direction", ["Side"]);
+        updateField("lighting", "shadows", ["Soft"]);
+        updateField("lighting", "contrast-ratio", ["2:1 Low"]);
+
+        // Camera / Cinematography
         updateField("cinematography", "camera", ["iPhone"]);
+        updateField("cinematography", "photo_style", ["UGC", "Hyperrealistic"]);
+        updateField("cinematography", "camera_angle", ["Selfie", "Eye Level"]);
         updateField("cinematography", "lighting_style", ["Natural"]);
+        updateField("cinematography", "lenses", ["Phone Lenses"]);
+        updateField("cinematography", "film_stock", ["iPhone color"]);
+        updateField("cinematography", "format", [".heic"]);
+
+        // Clothing (optional, matching existing preset style if needed, but screenshot didn't specify. 
+        // Keeping it cleared or default if not specified is safer, but 'Casual' fits the vibe. 
+        // User asked to INCLUDE options from screenshot. I'll stick to just those options.)
         updateField("clothing", "style", ["Casual"]);
     };
 
