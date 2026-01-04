@@ -10,10 +10,6 @@ export const SECTIONS: SectionConfig[] = [
         fields: [
             { id: "description", label: "Scene Description", options: [], type: "textarea" },
             { id: "atmosphere", label: "Atmosphere", options: ["Eerie", "Joyful", "Tense", "Peaceful", "Chaotic", "Dreamy", "Nostalgic", "Melancholic", "Romantic", "Mysterious"] },
-            { id: "time_period", label: "Time Period", options: ["Ancient Rome", "Medieval", "Victorian", "1920s", "1950s", "1980s", "Modern Day", "Cyberpunk Future", "Post-Apocalyptic", "Stone Age"] },
-            { id: "architecture", label: "Architecture", options: ["Brutalist", "Gothic", "Modern", "Art Deco", "Baroque", "Industrial", "Minimalist", "Organic", "Traditional Japanese"] },
-            { id: "weather_environment", label: "Weather & Environment", options: ["Stormy", "Sunny", "Foggy", "Snowing", "Raining", "Overcast", "Windy", "Dusty", "Tropical"] },
-            { id: "crowd", label: "Crowd / Population", options: ["Deserted", "Sparse", "Bustling", "Crowded", "Overcrowded", "Couple Only", "Solo Figure"] },
         ]
     },
     {
@@ -83,6 +79,10 @@ export const SECTIONS: SectionConfig[] = [
             { id: "location", label: "Specific Location", options: ["Bedroom", "Living Room", "Kitchen", "Office", "Street", "Forest", "Beach", "Mountain", "Desert", "City Setting", "Ruins", "Laboratory", "Spaceship"] },
             { id: "time", label: "Time of Day", options: ["Dawn", "Morning", "Noon", "Afternoon", "Sunset", "Dusk", "Night", "Midnight", "Golden Hour", "Blue Hour"] },
             { id: "weather", label: "Weather", options: ["Sunny", "Cloudy", "Rainy", "Stormy", "Snowy", "Foggy", "Misty", "Windy"] },
+            { id: "architecture", label: "Architecture", options: ["Brutalist", "Gothic", "Modern", "Art Deco", "Baroque", "Industrial", "Minimalist", "Organic", "Traditional Japanese"] },
+            { id: "weather_environment", label: "Weather & Environment", options: ["Stormy", "Sunny", "Foggy", "Snowing", "Raining", "Overcast", "Windy", "Dusty", "Tropical"] },
+            { id: "crowd", label: "Crowd / Population", options: ["Deserted", "Sparse", "Bustling", "Crowded", "Overcrowded", "Couple Only", "Solo Figure"] },
+            { id: "time_period", label: "Time Period", options: ["Ancient Rome", "Medieval", "Victorian", "1920s", "1950s", "1980s", "Modern Day", "Cyberpunk Future", "Post-Apocalyptic", "Stone Age"] },
         ]
     },
     {
